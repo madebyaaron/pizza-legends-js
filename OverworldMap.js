@@ -9,12 +9,20 @@ class OverworldMap {
         this.upperImage.src = config.upperSrc
     }
 
-    drawLowerImage(ctx) {
-        ctx.drawImage(this.lowerImage, 0, 0)
+    drawLowerImage(ctx, cameraAnchor) {
+        ctx.drawImage(
+            this.lowerImage,
+            utils.withGrid(10.5) - cameraAnchor.x,
+            utils.withGrid(6) - cameraAnchor.y
+        )
     }
 
-    drawUpperImage(ctx) {
-        ctx.drawImage(this.upperImage, 0, 0)
+    drawUpperImage(ctx, cameraAnchor) {
+        ctx.drawImage(
+            this.upperImage,
+            utils.withGrid(10.5) - cameraAnchor.x,
+            utils.withGrid(6) - cameraAnchor.y    
+        )
     }
 }
 
@@ -23,16 +31,16 @@ window.OverworldMaps = {
         lowerSrc: "/images/maps/DemoLower.png",
         upperSrc: "/images/maps/DemoUpper.png",
         gameObjects: {
-            hero: new GameObject({
-                x: 5,
-                y: 6,
-                src: "/images/characters/people/hero.png"
+            hero: new Person({
+                x: utils.withGrid(5),
+                y: utils.withGrid(6),
+                src: "/images/characters/people/hero.png",
+                isPlayerControlled: true
             }),
-            npcA: new GameObject({
-                x: 7,
-                y: 9,
-                src: "/images/characters/people/npc1.png"
-
+            npcA: new Person({
+                x: utils.withGrid(7),
+                y: utils.withGrid(9),
+                src: "/images/characters/people/npc1.png",
             })
         }
     },
@@ -40,19 +48,19 @@ window.OverworldMaps = {
         lowerSrc: "/images/maps/KitchenLower.png",
         upperSrc: "/images/maps/KitchenUpper.png",
         gameObjects: {
-            hero: new GameObject({
-                x: 3,
-                y: 5,
+            hero: new Person({
+                x: utils.withGrid(3),
+                y: utils.withGrid(5),
                 src: "/images/characters/people/hero.png"
             }),
-            npcA: new GameObject({
-                x: 9,
-                y: 6,
+            npcA: new Person({
+                x: utils.withGrid(9),
+                y: utils.withGrid(6),
                 src: "/images/characters/people/npc2.png"
             }),
-            npcB: new GameObject({
-                x: 10,
-                y: 8,
+            npcB: new Person({
+                x: utils.withGrid(10),
+                y: utils.withGrid(8),
                 src: "/images/characters/people/npc3.png"
             })
         }
